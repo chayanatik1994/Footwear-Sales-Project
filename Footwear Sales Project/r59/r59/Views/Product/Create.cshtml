@@ -1,0 +1,110 @@
+﻿@model ProductInputModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+    <form asp-action="Create" asp-controller="Product" method="post" enctype="multipart/form-data">
+    <h3>Create New Product</h3>    
+    <div class="form-group row mb-1">
+        <label asp-for="ProductName" class="col-form-label col-form-label-sm col-2"></label>
+        <div class="col-4">
+            <input type="text" asp-for="ProductName" class="form-control form-control-sm " />
+            <span asp-validation-for="ProductName" class="text-danger small"></span>
+        </div>
+    </div>
+            <div class="form-group row mb-1">
+                <label asp-for="ProductType" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-4">
+                    <select type="text" asp-for="ProductType" class="form-control form-control-sm " asp-items="@Html.GetEnumSelectList<ProductType>()" >
+                        <option value="">Select one</option>
+                    </select>
+                    <span asp-validation-for="ProductType" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Price" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="Price" class="form-control form-control-sm " />
+                    <span asp-validation-for="Price" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="MfgDate" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-4">
+                    <input type="date" asp-for="MfgDate" class="form-control form-control-sm " />
+                    <span asp-validation-for="MfgDate" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Picture" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-4">
+                    <input type="file" asp-for="Picture" class="form-control form-control-sm " />
+                    <span asp-validation-for="Picture" class="text-danger small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="InStock" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-4">
+                    <input type="checkbox" asp-for="InStock"  />
+                   
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <div class="col-6">
+                <div class="d-flex align-items-center">
+                    <h3>Sales</h3>
+                    <span style="flex:1 1 auto;"></span>
+                    <button type="submit" value="add" name="operation" class="btn btn-secondary btn-sm" formnovalidate >Add</button>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                                <th>SellerName</th>
+                                <th>Quantity</th>
+                                <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @for (var i = 0; i<Model.Sales.Count; i++)
+                            {
+                            <tr>
+                                <td>
+                                        <input type="date" asp-for="@Model.Sales[i].Date" class="form-control form-control-sm " />
+                                        <span asp-validation-for="@Model.Sales[i].Date" class="text-danger small"></span>
+                                </td>
+                                    <td>
+                                        <input type="text" asp-for="@Model.Sales[i].SellerName" class="form-control form-control-sm " />
+                                        <span asp-validation-for="@Model.Sales[i].SellerName" class="text-danger small"></span>
+                                    </td>
+                                    <td>
+                                        <input type="text" asp-for="@Model.Sales[i].Quantity" class="form-control form-control-sm " />
+                                        <span asp-validation-for="@Model.Sales[i].Quantity" class="text-danger small"></span>
+                                    </td>
+                                    <td>
+                                        <button type="submit" value="del_@i" name="operation" class="btn btn-secondary btn-sm" formnovalidate>del</button>
+                                    </td>
+                            </tr>    
+                            }
+                        </tbody>
+                </table>
+                </div>
+                </div>
+            <div class="form-group row mb-1">
+                <div class="col-6 text-end">
+                    <button type="submit" value="insert" class="btn btn-primary" name="operation" >Save</button>
+                    </div>
+                    </div>
+    </form>
+    </div>
+</div>
+<div class="col-12">
+    <a asp-action="Index" class="btn-link">Back to list</a>
+</div>
+@section scripts {
+    <script src="~/libs/jquery/jquery.min.js"></script>
+    <script src="~/libs/validate/jquery.validate.min.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.min.js"></script>
+}

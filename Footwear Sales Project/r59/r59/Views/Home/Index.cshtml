@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container text-center mt-4">
+        <h1>Welcome to Footwear Ltd</h1>
+        <p>Explore the best collection of shoes for every occasion.</p>
+
+        <!-- Bootstrap Carousel -->
+        <div id="shoeCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/images/shoe1.jpg" style="width:30%" alt="Shoe 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe2.jpg" style="width:30%" alt="Shoe 2">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe3.jpg" style="width:30%" alt="Shoe 3">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe4.png" style="width:30%" alt="Shoe 4">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe5.jpg" style="width:30%" alt="Shoe 5">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe3.jpg" style="width:30%" alt="Shoe 6">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe7.jpg" style="width:30%" alt="Shoe 7">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe8.png" style="width:30%" alt="Shoe 8">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/images/shoe9.jpeg" style="width:30%" alt="Shoe 9">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#shoeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#shoeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

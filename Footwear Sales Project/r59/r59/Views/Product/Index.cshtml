@@ -1,0 +1,118 @@
+﻿@model IEnumerable<r59.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row" style="padding:16px">
+<div class="col-12">
+<h3>Products</h3>
+<div style="display:flex;justify-content:flex-end" class="mb-1">
+    @Html.ActionLink("Create","Create","Product",new{},new{@class="btn btn-primary btn-sm"})
+</div>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Picture
+            </th>
+            <th>
+                 ProductName
+            </th>
+            <th>
+                 ProductType
+            </th>
+            <th>
+                 Price
+            </th>
+            <th>
+                 MfgDate
+            </th>
+            <th>
+                 InStock
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var p in Model) {
+        <tr>
+                <td>
+                    <img src="~/Pictures/@p.Picture" style="width:60px" />
+                </td>
+            <td>
+                @p.ProductName
+            </td>
+            <td>
+                @p.ProductType
+            </td>
+            <td>
+                @p.Price?.ToString("0.00")
+            </td>
+            <td>
+                @p.MfgDate?.ToString("yyyy-MM-dd")
+            </td>
+           
+            <td>
+                @(p.InStock? "Yes" : "No")
+            </td>
+            <td>
+            @Html.ActionLink("Edit","Edit","Product",new{id = p.ProductId},new{@class="btn btn-primary btn-sm"})
+            
+            <button type="button" class="btn btn-danger btn-sm del" data-pk="@p.ProductId">Delete</button>
+            </td>
+        </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="7">
+                            <h3>Sales</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>SellerName</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var s in p.Sales)
+                                    {
+                                    <tr>
+                                        <td>@s.Date?.ToString("yyyy-MM-dd")</td>
+                                        <td>@s.SellerName</td>
+                                        <td>@s.Quantity</td>
+                                    </tr>    
+                                    }
+                                </tbody>
+                </table>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+    </div>
+</div>
+@section scripts{
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+    $(".del").click(function () {
+        var id = $(this).data('pk');
+        var trP = $(this).closest('tr');
+        var trS = trP.next();
+        console.log(id);
+        if (confirm("Are you sure to delete?")) {
+            $.ajax({
+                type: 'post',
+                url: '/Product/Delete/' + id,
+                success: r => {
+                    if (r.success && r.success == true) {
+                        trP.remove();
+                        trS.remove();
+                    }
+                }
+            });
+        }
+    });
+</script>
+}

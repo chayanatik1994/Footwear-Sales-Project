@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
+<style>
+    body{padding-top:70px;}
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md  fixed-top shadow-sm " style="background-color: aqua">
+        <div class="container-fluid">
+            <span class="navbar-brand">footwear ltd</span>
+            <div class="navbar-collapse collapse">
+                <ul class="navbar-nav">
+                    <li>
+                    <a class="nav-link text-dark" asp-action="Index" asp-controller="Home">Home</a>
+                    </li>
+                    @* @if (User.Identity.IsAuthenticated) *@
+                   @*  { *@
+                <li>
+                    <a class="nav-link text-dark" asp-action="Index" asp-controller="Product">Product</a>
+                </li>
+                    @* } *@
+                    <li>
+                        <a class="nav-link text-dark" asp-action="Index1" asp-controller="Product">Product-List</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        @RenderBody()
+       
+       
+    </div>
+    <footer>
+        <p>&copy; footwear ltd</p>
+    </footer>
+
+   
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

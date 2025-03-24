@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\r59.props" />
+</Project>
